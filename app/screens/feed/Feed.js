@@ -4,15 +4,9 @@ import MainHeader from "../../components/Headers/MainHeader";
 import Container from "../../components/Posts/Container";
 import { FetchFeed } from "../../helpers/API/FetchFeed";
 import Colors from "../../styles/Colors";
-import { useSelector, useDispatch } from "react-redux";
 
 function FeedScreen({ navigation }) {
-  const postReducer = useSelector((state) => state);
-  console.log(postReducer[0].user, "postReducer");
-
-  const [postData, setPostData] = useState([
-    { user: { profile: { photo_url: "" } } },
-  ]);
+  const [postData, setPostData] = useState([]);
 
   const [refreshing, setRefreshing] = useState(false);
   const handleRefresh = () => {
@@ -56,9 +50,7 @@ function FeedScreen({ navigation }) {
               name={item.user.name}
               userHash={item.user.user_hash}
               userID={item.user.id}
-              flairBackground={
-                item.flair !== "No Flair" ? Colors.primaryColour : null
-              }
+              flairBackground={item.flair !== "No Flair" ? Colors.primaryColour : null}
               flairText={item.flair !== "No Flair" ? item.flair : null}
               flairColor={Colors.secondaryColor}
               postText={item.text}
