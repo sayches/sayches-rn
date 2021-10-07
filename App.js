@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import FeedScreen from "./app/screens/feed/Feed";
+import Constants from "expo-constants";
+const statusBarHeight = Constants.statusBarHeight;
 
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import { postReducer } from "./app/store/reducers";
 // Font Family //
 const fetchFont = () => {
   return Font.loadAsync({
@@ -25,7 +30,13 @@ export default function App() {
     );
   }
 
-  return <FeedScreen />;
+  return (
+    <Provider store={createStore(postReducer)}>
+      <View style={styles.app}>
+        <FeedScreen />
+      </View>
+    </Provider>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -34,5 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  app: {
+    marginTop: statusBarHeight,
   },
 });
