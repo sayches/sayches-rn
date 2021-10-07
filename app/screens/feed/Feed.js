@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 function FeedScreen({ navigation }) {
   const postReducer = useSelector((state) => state);
-  console.log(postReducer[0].user, "postReducer");
 
   const [postData, setPostData] = useState([
     { user: { profile: { photo_url: "" } } },
