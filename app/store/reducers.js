@@ -1,6 +1,8 @@
 import { POST } from "./types";
 
-const initialState = [{ user: "" }];
+const initialState = [
+];
+
 export const postReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case POST:
