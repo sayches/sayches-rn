@@ -10,5 +10,5 @@ export const FetchFeed = async (setPostData) => {
     APIInstance + PostSerializer,
     AuthorizationHeader
   );
-  setPostData(response.data);
+  return response.data
 };
